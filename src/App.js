@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import Landing from "./pages/landing";
+import Modal from "./components/modal";
+import Router from "./components/router";
+
 import "./App.css";
 
 class App extends Component {
@@ -7,7 +9,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="startup-header">
-          <Landing />
+          <Router />
         </header>
       </div>
     );

@@ -1,10 +1,11 @@
 import React from "react";
 import LazyHero from "react-lazy-hero";
+import image from "../assets/priscilla-du-preez-95313-unsplash.jpg";
 
 export default function Hero() {
   return (
     <div className="hero">
-      <LazyHero imageSrc="https://unsplash.it/2000/1000">
+      <LazyHero imageSrc={image}>
         <h1>The Startup</h1>
       </LazyHero>
     </div>
