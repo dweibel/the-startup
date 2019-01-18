@@ -1,5 +1,5 @@
 import React from "react";
-import "./nav-button.css";
+import "../style/nav-button.css";
 
 export default function NavBarButton() {
   return (

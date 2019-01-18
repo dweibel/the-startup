@@ -1,5 +1,5 @@
 import React from "react";
-import "./navbar.css";
+import "../style/navbar.css";
 import NavBarButton from "./nav-button";
 
 export default function Navbar() {
