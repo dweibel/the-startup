@@ -9,6 +9,7 @@
   height: 100%;
   align-items: center;
   padding: 0 1rem;
+  padding-top: 6px;
 }
 
 .navbar-logo {
