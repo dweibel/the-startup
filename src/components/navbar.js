@@ -42,11 +42,11 @@ class Navbar extends Component {
     this.props.showModal(
       {
         open: true,
-        title: "Alert Modal",
+        title: "Login Modal",
         message: MESSAGE,
         closeModal: this.closeModal
       },
-      "alert"
+      "login"
     );
   }
 
