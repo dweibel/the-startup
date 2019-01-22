@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import NavBarButton from "./nav-button";
 import { connect } from "react-redux";
 import ModalRoot from "../modalRoot.js";
@@ -13,14 +14,13 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-const MESSAGE = "A redux modal component.";
-
 class Navbar extends Component {
   constructor(props) {
     super(props);
     this.closeModal = this.closeModal.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
     this.openLoginModal = this.openLoginModal.bind(this);
+    this.openSignupModal = this.openSignupModal.bind(this);
     this.showInput = this.showInput.bind(this);
   }
 
@@ -42,14 +42,20 @@ class Navbar extends Component {
     this.props.showModal(
       {
         open: true,
-        title: "Login Modal",
-        message: MESSAGE,
         closeModal: this.closeModal
       },
       "login"
     );
   }
-
+  openSignupModal(event) {
+    this.props.showModal(
+      {
+        open: true,
+        closeModal: this.closeModal
+      },
+      "signup"
+    );
+  }
   render() {
     return (
       <div className="navbar">
@@ -59,18 +65,23 @@ class Navbar extends Component {
               <NavBarButton />
             </div>
             <div className="navbar-logo">
-              <a href="/">The Startup</a>
+              <Link to="/">The Startup</Link>
             </div>
 
             <div className="spacer" />
             <div className="navbar-items">
               <ul>
                 <li>
-                  <a href="/">Sign up</a>
+                  <button
+                    className="signup-button"
+                    onClick={this.openSignupModal}
+                  >
+                    Signup
+                  </button>
                 </li>
                 <li>
                   <button
-                    className="btn btn-outline-primary btn-block"
+                    className="login-button"
                     onClick={this.openLoginModal}
                   >
                     Login

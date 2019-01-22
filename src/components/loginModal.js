@@ -1,11 +1,9 @@
 import React from "react";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 
 class LoginModal extends React.Component {
-  nextPath(path) {
-    this.props.history.push(path);
-  }
-
-  render({ closeModal, title, message }) {
+  render() {
+    const { closeModal } = this.props;
     return (
       <div className="modal-content">
         <div className="modal-header">
@@ -18,9 +16,9 @@ class LoginModal extends React.Component {
             <span aria-hidden="true">&times;</span>
           </button>
 
-          <h2 className="modal-title">{title}</h2>
+          <h2 className="modal-title">Login</h2>
           <div className="modal-body">
-            <p>{message}</p>
+            <p>Please Enter Your Credentials</p>
           </div>
           <form>
             <div className="form-group">
@@ -30,13 +28,11 @@ class LoginModal extends React.Component {
               <input type="text" name="password" className="password-label" />
             </div>
           </form>
-          <button
-            type="button"
-            className="submit-button"
-            onClick={() => this.nextPath("/idea")}
-          >
-            Submit
-          </button>
+          <Link to="/idea">
+            <button type="button" onClick={closeModal}>
+              Submit!
+            </button>
+          </Link>
         </div>
       </div>
     );
