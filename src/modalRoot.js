@@ -4,8 +4,11 @@ import ReactModal from "react-modal";
 
 import modalTypes from "./components/index.js";
 
+ReactModal.setAppElement("#root");
+
 const MODAL_TYPES = {
-  login: modalTypes.loginModal
+  login: modalTypes.loginModal,
+  signup: modalTypes.signupModal
 };
 
 const mapStateToProps = state => ({
@@ -31,6 +34,10 @@ class ModalContainer extends React.Component {
 
   closeModal() {
     this.setState({ modalIsOpen: false });
+  }
+
+  componentDidMount() {
+    //Modal.setAppElement("#login-modal");
   }
 
   render() {

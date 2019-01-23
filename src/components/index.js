@@ -1,7 +1,9 @@
 import loginModal from "./loginModal";
+import signupModal from "./signupModal.js";
 
 const modalTypes = {
-  loginModal
+  loginModal,
+  signupModal
 };
 
 export default modalTypes;

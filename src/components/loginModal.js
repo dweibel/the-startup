@@ -5,7 +5,7 @@ class LoginModal extends React.Component {
   render() {
     const { closeModal } = this.props;
     return (
-      <div className="modal-content">
+      <div className="modal-content" id="login-modal">
         <div className="modal-header">
           <button
             type="button"
