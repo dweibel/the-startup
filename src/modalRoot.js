@@ -8,7 +8,8 @@ ReactModal.setAppElement("#root");
 
 const MODAL_TYPES = {
   login: modalTypes.loginModal,
-  signup: modalTypes.signupModal
+  signup: modalTypes.signupModal,
+  newIdea: modalTypes.newIdeaModal
 };
 
 const mapStateToProps = state => ({
