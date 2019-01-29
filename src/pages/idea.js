@@ -15,7 +15,6 @@ export class Idea extends React.Component {
       <div className="idea-app-page">
         <div>
           <h1>Business Idea</h1>
-
           <div>
             <AddNewIdeaButton />
           </div>
