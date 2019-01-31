@@ -1,30 +1,33 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Field, reduxForm } from "redux-form";
+import { addIdea } from "../actions";
 
 class NewIdeaModal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      editing: true
-    };
-
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  onSubmit(event) {
-    event.preventDefault();
-    const title = this.titleInput.value.trim();
-    if (title && this.props.onAdd) {
-      this.props.onAdd(this.titleInput.value);
+  renderError({ error, touched }) {
+    if (touched && error) {
+      return (
+        <div className="idea-error">
+          <div className="header">{error}</div>
+        </div>
+      );
     }
-    this.titleInput.value = "";
   }
 
-  setEditing(editing) {
-    this.setState({
-      editing
-    });
-  }
+  renderInput = ({ input, label, meta }) => {
+    return (
+      <div className="field error">
+        <textarea {...input} />
+        <div>{this.renderError(meta)}</div>
+      </div>
+    );
+  };
+
+  onSubmit = (formValues, dispatch) => {
+    console.log(formValues);
+    this.props.addIdea(formValues);
+  };
+
   render() {
     const { closeModal } = this.props;
     return (
@@ -41,12 +44,16 @@ class NewIdeaModal extends React.Component {
           <h2 className="modal-title">Business Idea</h2>
           <div className="idea-body" />
           <h3 className="title">Enter Your Business Idea</h3>
-          <form className="add-form" onSubmit={this.onSubmit}>
+          <form
+            onSubmit={this.props.handleSubmit(this.onSubmit)}
+            className="add form error"
+          >
             <div className="form-group" role="form">
-              <textarea className="idea-title" rows="1" cols="50" />
+              <Field name="title" component={this.renderInput} />
               <h3 className="description">Write a brief description</h3>
-              <textarea className="description-textarea" rows="5 " cols="100" />
+              <Field name="description" component={this.renderInput} />
             </div>
+            <button>Save!</button>
           </form>
           <button type="submit-button" onClick={closeModal}>
             Submit!
@@ -60,7 +67,32 @@ class NewIdeaModal extends React.Component {
   }
 }
 
+const validate = formValues => {
+  const errors = {};
+  if (!formValues.title) {
+    errors.title = "Please enter a business Idea";
+  }
+  if (!formValues.description) {
+    errors.description = "Please enter a description";
+  }
+
+  return errors;
+};
+
 const mapStateToProps = state => ({
-  ideas: state.ideas
+  formValues: state.formValues
 });
-export default connect(mapStateToProps)(NewIdeaModal);
+
+const formWrapped = reduxForm(
+  {
+    form: "ideaCreate",
+    validate
+  },
+
+  mapStateToProps
+)(NewIdeaModal);
+
+export default connect(
+  null,
+  { addIdea }
+)(formWrapped);

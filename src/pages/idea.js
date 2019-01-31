@@ -2,15 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addIdea } from "../actions";
 
-import Ideas from "../components/ideas.js";
-import NewIdeaModal from "../components/newIdeaModal.js";
 import AddNewIdeaButton from "../components/addNewIdeaButton.js";
-
 export class Idea extends React.Component {
-  addIdea(title) {
-    this.props.dispatch(addIdea(title));
+  compnentDidMount() {
+    this.props.addIdea();
   }
   render() {
+    console.log(this.props.idea);
     return (
       <div className="idea-app-page">
         <div>
@@ -25,7 +23,10 @@ export class Idea extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  title: state.title
+  formValues: state.idea
 });
 
-export default connect(mapStateToProps)(Idea);
+export default connect(
+  mapStateToProps,
+  { addIdea }
+)(Idea);

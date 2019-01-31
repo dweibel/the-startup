@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
 import modal from "./modal";
-import ideaReducer from "./addIdea.js";
+import ideaReducers from "./ideaReducers.js";
+import { reducer as formReducer } from "redux-form";
 
 export default combineReducers({
   modal,
-  ideaReducer
+  idea: ideaReducers,
+  form: formReducer
 });
